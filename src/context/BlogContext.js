@@ -1,8 +1,10 @@
 import createDataContext from "./createDataContext";
 
 const blogReducer = (state, action) => {
+    //console.log(action.payload);
     switch(action.type){
         case 'add_blogpost':
+            
             return [
                 ...state, 
                 { 
