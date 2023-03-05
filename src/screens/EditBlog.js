@@ -8,17 +8,11 @@ const EditBlog = ({ route }) => {
     const id = route.params.id;
     const { state, editBlogPost } = useContext(Context);
     const navigation = useNavigation();
-
     const blogPost = state.find(b => b.id === id );
-
-    const editBlog = (payload) => {
-        editBlogPost({ ...payload, id });
-        navigation.pop()//navigate("Home")
-    }
 
     return <BlogPostForm 
         initialValues={blogPost}
-        onSubmit={editBlog}
+        onSubmit={(payload) => editBlogPost({ ...payload, id }, () => navigation.pop())}
     />
 }
 

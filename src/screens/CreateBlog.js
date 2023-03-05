@@ -8,13 +8,12 @@ const CreateBlog = ({ route }) => {
     const { addBlogPost } = useContext(Context);
     const navigation = useNavigation();
 
-    const saveBlog = (payload) => {
-        addBlogPost(payload);
-        navigation.navigate("Home")
-    }
-
     return <BlogPostForm 
-     onSubmit = {saveBlog} />
+     onSubmit = {
+        (payload) => addBlogPost(payload, 
+            () => navigation.navigate("Home"))
+    } 
+    />
 }
 
 const styles = StyleSheet.create({
