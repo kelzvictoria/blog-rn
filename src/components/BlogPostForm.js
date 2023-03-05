@@ -1,30 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
-import { Context } from "../context/BlogContext";
 
-const BlogPostForm = ({ id, onSubmit }) => {
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
-    const { state } = useContext(Context);
-    
-
-    useEffect(() => {
-        if (id) {
-            const blogPost = state.find(b => b.id === parseInt(id))
-            setTitle(blogPost.title);
-            setContent(blogPost.content)
-        }
-
-    }, [])
-
-    const save = (payload) => {
-        let finalData = {}
-        if(id){
-            finalData["id"] = id
-        }
-        finalData = { ...finalData, ...payload }
-        onSubmit(finalData)
-    }
+const BlogPostForm = ({ onSubmit, initialValues }) => {
+    const [title, setTitle] = useState(initialValues.title)
+    const [content, setContent] = useState(initialValues.content)
+    //const [ id, setId ] = useState(initialValues.id)
 
     return <View style={styles.container}>
         <View style={styles.form}>
@@ -33,9 +13,16 @@ const BlogPostForm = ({ id, onSubmit }) => {
 
             <Text>Content</Text>
             <TextInput style={styles.input} onChangeText={(text) => setContent(text)} value={content} />
-            <Button title="Save" onPress={() => save({ title, content })} />
+            <Button title="Save" onPress={() => onSubmit({ title, content })} />
         </View>
     </View>
+}
+
+BlogPostForm.defaultProps = {
+    initialValues: {
+        title: '',
+        content: ''
+    }
 }
 
 const styles = StyleSheet.create({
