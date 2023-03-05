@@ -5,9 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import BlogPostForm from "../components/BlogPostForm";
 
 const CreateBlog = ({ route }) => {
-    const { state, addBlogPost } = useContext(Context);
-    // const [ title, setTitle ] = useState("")
-    // const [ content, setContent ] = useState("")
+    const { addBlogPost } = useContext(Context);
     const navigation = useNavigation();
 
     const saveBlog = (payload) => {
@@ -16,7 +14,6 @@ const CreateBlog = ({ route }) => {
     }
 
     return <BlogPostForm 
-    //title={title} content={content} setTitle={setTitle} setContent={setContent}
      onSubmit = {saveBlog} />
 }
 

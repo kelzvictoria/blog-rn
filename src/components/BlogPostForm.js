@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import { Context } from "../context/BlogContext";
 
-const BlogPostForm = ({/*title, content, setTitle, setContent,*/ id, onSubmit }) => {
+const BlogPostForm = ({ id, onSubmit }) => {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
-    const { state, addBlogPost, editBlogPost } = useContext(Context);
+    const { state } = useContext(Context);
     
 
     useEffect(() => {
@@ -21,7 +21,6 @@ const BlogPostForm = ({/*title, content, setTitle, setContent,*/ id, onSubmit })
         let finalData = {}
         if(id){
             finalData["id"] = id
-            //console.log(finalData);
         }
         finalData = { ...finalData, ...payload }
         onSubmit(finalData)

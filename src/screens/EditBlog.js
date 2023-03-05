@@ -6,8 +6,6 @@ import BlogPostForm from "../components/BlogPostForm";
 
 const EditBlog = ({ route }) => {
     const { state, editBlogPost } = useContext(Context);
-    // const [ title, setTitle ] = useState("")
-    // const [ content, setContent ] = useState("")
     const navigation = useNavigation();
 
     const editBlog = (payload) => {
@@ -15,17 +13,7 @@ const EditBlog = ({ route }) => {
         navigation.navigate("Home")
     }
 
-    // useEffect(() => {
-    //     const blogPost = state.find(b => b.id === parseInt(route.params.id))
-    //     setTitle(blogPost.title);
-    //     setContent(blogPost.content)
-    // }, [])
-
     return <BlogPostForm 
-        // setTitle={setTitle} 
-        // setContent={setContent} 
-        // title={title}  
-        // content={content}
         id={route.params.id}
         onSubmit={editBlog}
     />
