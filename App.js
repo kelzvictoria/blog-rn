@@ -32,7 +32,9 @@ const App = () => {
           component={ShowBlog}
           options={({ navigation, route }) => ({
             headerRight: () => (
-              <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Edit', {
+              <TouchableOpacity 
+                style={{ marginRight: 15 }} 
+                onPress={() => navigation.navigate('Edit', {
                 id: route.params.id
               }
               )}>

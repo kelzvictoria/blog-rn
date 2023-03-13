@@ -1,17 +1,25 @@
-import React, { useContext, } from "react";
+import React, { useContext, useEffect, } from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Button } from 'react-native'
 import { Context} from "../context/BlogContext";
 import { Feather, FontAwesome } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 
 const Home = () => {
-    const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+    const { state, getBlogPosts, deleteBlogPost } = useContext(Context);
     const navigation = useNavigation()
+
+    useEffect(() => {
+        getBlogPosts()
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogPosts()
+        })
+        return () => {
+            listener.remove()
+        }
+    }, [])
 
     return (
         <View style={styles.container} >
-            {/* <Button onPress={() => navigation.navigate("Create")} title="Add Post" /> */}
-            {/* <TouchableOpacity onPress={addBlogPost}><Text>Add Post</Text></TouchableOpacity> */}
             <FlatList 
                 data={state}
                 keyExtractor={(item) => item.title}
